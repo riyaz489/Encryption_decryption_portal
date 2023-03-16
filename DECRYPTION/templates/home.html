@@ -1,0 +1,88 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  {% block title %}
+  {% endblock title %}
+
+</head>
+
+<body>
+  {% block content %}
+  <nav class="navbar shadow-lg navbar-expand-lg navbar-dark justify-content-center" style="background-color: #2d334cb7">
+    <!-- <div class="d-flex">
+      <img class="img-fluid" src="https://www.pikpng.com/pngl/m/345-3459769_chubb-corporation-clipart.png" alt="Chubb Corporation Clipart@pikpng.com"">
+    </div> -->
+    </div>
+    <div class="container px-5 justify-content-center">
+      <a class="navbar-brand" href="#!" style="font-size: 30px;"><b>Decryption Portal</b></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+
+              {% if user.is_authenticated %}
+    <li class="nav-item"><a class="nav-link" aria-current="page"  style="font-size: 20px; hidden"><button onclick="location.href='{% url 'logout' %}'" class="btn btn-outline-light my-2 my-sm-0"> Logout</button></a></li>
+              {% endif %}
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <div class="d-flex justify-content-center align-self-center py-3" style=" background:#fcdca98a">
+    <h1 class="display-5 fw-bolder text-secondary center">Welcome to the Decryption Portal!</h1>
+  </div>
+  <section class=" d-flex justify-content-center align-self-center" style="min-height: 83%; background:#fcdca98a">
+
+    <div class="card shadow-lg d-dlex justify-content-center bg-yellow "
+      style="background-color: #fff;width: 50rem;margin-top: 10%;  height: 20rem; border-radius: 5%">
+      <div class="card-body py-5 d-flex justify-content-center border-radius-20%">
+        <div class="form-group">
+          <div class="text-center">
+
+            <h5 class=" text-xl mb-5" style="font-size: 30px; font-family: Arial, Helvetica, sans-serif; color:rgb(139, 0, 0)">Choose a file type to decrypt</h5>
+
+            <form method="POST">
+              {% csrf_token %}
+              <div class="form-group d-flex justify-content-center">
+
+                <div class="col-sm-10 form-check-inline d-flex justify-content-center">
+                  {% for radio in form.options %}
+                  <div>
+                    {{ radio.tag }}
+                    <label class="form-check-label mr-4 mb-3" style="font-size: 15px; color: "
+                      for="{{ radio.id_for_label }}">
+                      <b>{{ radio.choice_label }}</b></label>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <button type="submit" class="btn shadow btn-lg rounded-pill"
+                style="width: 30rem; background-color: #fb5509; color: white"><b>GO</b></button>
+              <br /><br />
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- </div> -->
+  </section>
+
+  {% endblock content %}
+
+</body>
+
+</html>
